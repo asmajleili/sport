@@ -1,0 +1,42 @@
+<app-baner x="Weather"></app-baner>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- # :donner un id a le formulaire ,ngForm:mot technique /directive structurelle -->
+                <form [formGroup]="searchForm">
+                    <div class="container">
+                        <div class="form-group">
+                            <input type="text" formControlName="city" class="form-control" placeholder="City">
+                        </div>
+                        <div *ngIf="searchForm.controls['city'].invalid &&
+                        (searchForm.controls['city'].touched ||
+                        searchForm.controls['city'].dirty)">
+                            <div *ngIf="searchForm.controls['city'].errors.required" style="color: red;"> city is
+                                required
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" (click)="search()" class="btn btn-primary py-3 px-5" value="search">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    
+    
+        <h4>temp: {{weather?.temp}}</h4>
+        <h4>sunset: {{weather?.sunset*1000 | date:"hh:mm"}}</h4>
+        <h4>sunrise: {{weather?.sunrise*1000 | date:"hh:mm"}}</h4>
+        <h4>humidity: {{weather?.humidity}}</h4>
+        <h4>icon : <img [src]="weather?.icon" alt=""></h4>
+
+   
+        
+</div>
